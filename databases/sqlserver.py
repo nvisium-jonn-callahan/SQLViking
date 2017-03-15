@@ -25,7 +25,8 @@ class SqlServerDB(BaseDB):
         data = str(pkt[TCP])[20:].encode('hex')
         return "\n--SQLServ Req--\n%s\n"%self.readable(data)
         
-    def parseResp(self, data, conn):
+    # was originally (self, data, conn).. no way this was correct
+    def parseResp(self, pkt, conn):
         data = str(pkt[TCP])[20:]
         resp = Response(data)
         resp.parse()
